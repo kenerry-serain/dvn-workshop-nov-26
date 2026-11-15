@@ -11,7 +11,7 @@ import type {DatabaseKey} from './types.js';
 export const db = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: {removeUndefinedValues: true},
 });
-// O SAM injeta TABLE em todas as funções. Não cria conexão nem executa requisição no import.
+// TABLE é configurada no ambiente de cada função.
 export const TableName = process.env.TABLE as string;
 export {GetCommand, PutCommand, UpdateCommand, QueryCommand, TransactWriteCommand};
 

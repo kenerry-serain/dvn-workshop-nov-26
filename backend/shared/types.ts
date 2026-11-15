@@ -63,6 +63,18 @@ export interface ErrorSample {
   requestId: string | null;
 }
 
+export type SendFailureSource = 'sqs' | 'apiGatewayThrottle' | 'network' | 'other';
+
+export interface ProcessingFailures {
+  available: boolean;
+  attempts: number;
+  batches: number;
+  dynamoThrottled: number;
+  partial: boolean;
+  lastFailureAt?: number;
+  nextRetryAt?: number;
+}
+
 export interface WorkerMetrics extends DatabaseKey {
   ttl: number;
   done: boolean;
@@ -77,6 +89,7 @@ export interface WorkerMetrics extends DatabaseKey {
   latencyMaxMs?: number;
   statusCodes?: Record<string, number>;
   errorSamples?: ErrorSample[];
+  sendFailures?: Partial<Record<SendFailureSource, number>>;
   peakStartedPerSecond?: number;
   httpRequests?: number;
   checkpointError?: string;

@@ -8,37 +8,26 @@
   <style>
 :root {
   color-scheme: dark;
-  --bg: #120d0a;
-  --surface: #211710;
-  --line: #fdba7433;
-  --text: #fff7ef;
-  --muted: #decbc0;
-  --signal: #fdba74;
-  font: 16px/1.65 Arial, Helvetica, sans-serif;
+  --bg: #101312;
+  --surface: #181e19;
+  --line: #364238;
+  --text: #e9f0e6;
+  --muted: #b7c1b6;
+  --lime: #c3f45b;
+  font: 16px/1.65 Inter, system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: radial-gradient(ellipse at 84% 14%, #392015 0%, transparent 54%) fixed,
-    linear-gradient(#fdba740b 1px, transparent 1px),
-    linear-gradient(90deg, #fdba740b 1px, transparent 1px), var(--bg);
-  background-size: auto, 72px 72px, 72px 72px, auto;
-  color: var(--text);
-}
-a { color: var(--signal); text-underline-offset: .2em; }
-:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+a { color: var(--lime); text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 .wrap { width: min(100% - 2rem, 1220px); margin-inline: auto; }
 .site-header { border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .65rem 1.5rem; padding-block: .9rem; }
 .site-header a { color: var(--text); font-size: .9rem; }
-.hero { padding-block: 3.5rem 2.6rem; border-bottom: 1px solid var(--line); }
-.site-header nav { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; }
-.site-header nav a:hover { color: var(--signal); }
-.eyebrow { display: block; margin-bottom: 1rem; color: var(--signal); font: 700 .85rem ui-monospace, monospace; letter-spacing: .16em; text-transform: uppercase; }
-.title-accent { color: var(--signal); background: linear-gradient(90deg, #fdba74, #fde68a, #fef9c3); background-clip: text; -webkit-text-fill-color: transparent; }
+.hero { background: radial-gradient(ellipse at top right, #243321, transparent 60%); padding-block: 3.5rem 2.6rem; border-bottom: 1px solid var(--line); }
 .hero p { max-width: 74ch; color: var(--muted); margin-bottom: 0; }
 h1, h2, h3 { line-height: 1.14; letter-spacing: -.035em; }
-h1 { font-size: clamp(2.25rem, 6vw, 4.25rem); max-width: 21ch; margin: 0; font-weight: 500; }
+h1 { font-size: clamp(2.25rem, 6vw, 4.25rem); max-width: 19ch; margin: 0; }
 h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); margin: 0 0 1rem; }
 h3 { font-size: 1.26rem; margin-top: 2rem; }
 h2, h3, details { scroll-margin-top: 1rem; }
@@ -48,33 +37,32 @@ h2, h3, details { scroll-margin-top: 1rem; }
 .toc ul { list-style: none; margin: 0; padding: 0; }
 .toc li { margin: 0 0 .5rem; }
 .toc a { color: var(--muted); font-size: .92rem; }
-.toc a:hover { color: var(--signal); }
+.toc a:hover { color: var(--lime); }
 section { padding-block: 2.3rem; border-bottom: 1px solid var(--line); }
 p, li { overflow-wrap: anywhere; }
 section ol { padding-left: 1.45rem; }
 section li { padding-left: .3rem; margin-bottom: .8rem; }
-section li::marker { color: var(--signal); font-weight: 700; }
-code { font: .9em ui-monospace, SFMono-Regular, Consolas, monospace; color: #ffe5b6; }
-:not(pre) > code { background: #3a2417; padding: .1em .28em; border-radius: .2em; }
+section li::marker { color: var(--lime); font-weight: 700; }
+code { font: .9em ui-monospace, SFMono-Regular, Consolas, monospace; color: #d9f6ae; }
+:not(pre) > code { background: #253023; padding: .1em .28em; border-radius: .2em; }
 pre, details, .table-scroll { background: var(--surface); border: 1px solid var(--line); border-radius: .65rem; }
 pre { margin-block: 1rem; padding: .9rem; overflow: auto; line-height: 1.5; }
 details { margin-block: .85rem; padding: .7rem .9rem; }
 summary { cursor: pointer; font-weight: 650; }
 details pre { margin-bottom: .15rem; }
-.gateway-code { white-space: pre-wrap; overflow-wrap: anywhere; }
 .table-scroll { overflow-x: auto; margin-block: 1rem; }
 table { width: 100%; min-width: 38rem; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; }
 th, td { padding: .65rem .8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
-thead th { background: #302017; color: var(--text); }
+thead th { background: #222b22; color: var(--text); }
 thead th small { display: block; margin-top: .4rem; color: var(--muted); font-size: .78rem; font-weight: 450; line-height: 1.35; }
 .sizing-table { min-width: 46rem; }
 .sizing-table th, .sizing-table td { text-align: center; }
-.sizing-table tbody th { color: #fde68a; white-space: nowrap; }
+.sizing-table tbody th { color: #dff6b9; white-space: nowrap; }
 .sizing-table td small { display: block; margin-top: .35rem; color: var(--muted); font-size: .78rem; line-height: 1.4; }
 .sizing-table td small span { display: block; }
 
 tbody tr:last-child td { border-bottom: 0; }
-td:first-child { font-weight: 650; color: #fde68a; }
+td:first-child { font-weight: 650; color: #dff6b9; }
 .env-table td:nth-child(2) { min-width: 12rem; max-width: 19rem; }
 .env-table td:nth-child(3) { min-width: 7rem; }
 .env-table td code { overflow-wrap: anywhere; }
@@ -87,10 +75,8 @@ footer { padding-block: 1.25rem 2rem; }
   section { padding-block: 1.8rem; }
 }
 @media print {
-  :root { color-scheme: light; --bg: white; --surface: white; --line: #bbb; --text: #111; --muted: #333; --signal: #7c3e10; }
-  body, thead th, :not(pre) > code { background: none; }
-  .title-accent { background: none; color: inherit; -webkit-text-fill-color: currentColor; }
-  .sizing-table tbody th { color: #222; }
+  :root { color-scheme: light; --bg: white; --surface: white; --line: #bbb; --text: #111; --muted: #333; --lime: #244b17; }
+  .hero, thead th, :not(pre) > code { background: none; }
   .site-header, .toc, footer { display: none; }
   .layout { display: block; }
   td:first-child, code { color: #222; }
@@ -102,9 +88,9 @@ footer { padding-block: 1.25rem 2rem; }
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap"><strong>Residência · DevOps na Nuvem</strong><nav aria-label="Links do workshop"><a href="/workshop/apresentacao#formas-de-testar">Voltar à apresentação</a><a href="https://d32k5wws9edenw.cloudfront.net/">Painel do laboratório</a><a href="https://d32k5wws9edenw.cloudfront.net/guia-workshop.html">Guia do workshop</a></nav></div>
+  <div class="wrap"><strong>DevOps na nuvem · Black Friday Lab</strong><div><a href="guia-workshop.html">Guia do workshop</a> · <a href="/">Painel do laboratório</a></div></div>
 </header>
-<div class="hero"><div class="wrap"><span class="eyebrow">Workshop · Laboratório Black Friday</span><h1>Montagem manual do laboratório no <span class="title-accent">console aws</span></h1><p>Use uma stack ou recursos separados para a aula. Escolha a mesma região para Lambda, SQS, DynamoDB e API Gateway. Neste roteiro os exemplos usam <code>us-east-1</code>. O CloudFront publica o painel estático. O navegador e a Lambda geradora fazem chamadas diretamente ao API Gateway.</p>
+<div class="hero"><div class="wrap"><h1>Montagem manual do laboratório no Console AWS</h1><p>Use uma stack ou recursos separados para a aula. Escolha a mesma região para Lambda, SQS, DynamoDB e API Gateway. Neste roteiro os exemplos usam <code>us-east-1</code>. O CloudFront publica o painel estático. O navegador e a Lambda geradora fazem chamadas diretamente ao API Gateway.</p>
 </div></div>
 <div class="wrap layout">
   <nav class="toc" aria-label="Etapas do roteiro">
@@ -112,7 +98,7 @@ footer { padding-block: 1.25rem 2rem; }
     <ul>
       <li><a href="#backend">DynamoDB e filas FIFO</a></li>
       <li><a href="#pacotes-lambda">Build e ZIP das Lambdas</a></li>
-      <li><a href="#variaveis-lambda">Variáveis das Lambdas</a></li>
+      <li><a href="#variaveis-lambda">Variáveis e cold start</a></li>
       <li><a href="#api-gateway">API Gateway e rotas</a></li>
       <li><a href="#integracoes-sqs">Mappings do SQS</a></li>
       <li><a href="#headers-cors">Headers, CORS e API key</a></li>
@@ -128,10 +114,10 @@ footer { padding-block: 1.25rem 2rem; }
 <h3 id="fila-fifo">DynamoDB e filas FIFO</h3>
 <ol>
 <li>Em <strong>DynamoDB → Tables → Create table</strong>, crie uma tabela <strong>On-demand</strong>. Use <code>pk</code> como partition key e <code>sk</code> como sort key, ambas String. Em <strong>Additional settings → Time to Live</strong>, habilite o atributo <code>ttl</code>.</li>
-<li>Crie primeiro uma DLQ FIFO e depois a fila principal FIFO em SQS → Queues → Create queue. Use nomes terminados em .fifo e criptografia SSE-SQS. Na fila principal, ligue High throughput FIFO para usar deduplicação e throughput por grupo. Desabilite a deduplicação por conteúdo porque o Gateway envia o ID explicitamente. Configure redrive para a DLQ após 20 recebimentos, valor escolhido no laboratório para dar margem a falhas transitórias durante os testes.</li>
-<li>Na fila principal, em <strong>Edit → Configuration → Visibility timeout</strong>, configure <strong>180 segundos</strong>.</li>
+<li>Crie primeiro uma DLQ FIFO e depois a fila principal FIFO em SQS → Queues → Create queue. Use nomes terminados em .fifo e criptografia SSE-SQS. Na fila principal, ligue High throughput FIFO para usar deduplicação e throughput por grupo. Desabilite a deduplicação por conteúdo porque o Gateway envia o ID explicitamente. Na fila principal, habilite <strong>Dead-letter queue</strong>, selecione a DLQ e defina <strong>Maximum receives = 5</strong>. Na DLQ, permita a fila principal na <strong>Redrive allow policy</strong>.</li>
+<li>Na fila principal, em <strong>Edit → Configuration → Visibility timeout</strong>, configure <strong>60 segundos</strong>.</li>
 </ol>
-<p>O padrão do SQS é 30 s. Neste laboratório, o timeout da Processor é 30 s e o gatilho FIFO não usa janela de batching. A AWS recomenda pelo menos seis vezes o timeout da função consumidora para dar margem a novas tentativas em caso de throttling. Por isso, configure 6 × 30 s = 180 s na fila principal. Esse tempo começa quando a mensagem é recebida. Se o processamento terminar com sucesso, a mensagem é removida imediatamente. Se ela não for removida, pode voltar a ficar disponível ao expirar a visibilidade. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Padrão do SQS</a> · <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html">Recomendação da AWS para Lambda com SQS</a></p>
+<p>O padrão do SQS é 30 s. Neste laboratório, o timeout da Processor é 10 s e o gatilho FIFO não usa janela de batching. A AWS recomenda pelo menos seis vezes o timeout da função consumidora para dar margem a novas tentativas em caso de throttling. Por isso, configure 6 × 10 s = 60 s na fila principal. Esse tempo começa quando a mensagem é recebida. Se o processamento terminar com sucesso, a mensagem é removida imediatamente. Se ela não for removida, pode voltar a ficar disponível ao expirar a visibilidade. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Padrão do SQS</a> · <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html">Recomendação da AWS para Lambda com SQS</a></p>
 <h3 id="pacotes-lambda">Compile e empacote as Lambdas</h3>
 <p>Na raiz do laboratório, instale as dependências, compile o TypeScript e remova as dependências de desenvolvimento antes de entrar em <code>backend/dist</code>.</p>
 <pre><code class="language-bash">cd backend &amp;&amp;
@@ -154,10 +140,11 @@ node_modules/</code></pre>
 <p>Em Lambda → Create function → Author from scratch, crie as três funções com Node.js 22. Em Code → Upload from → .zip file, envie o ZIP correspondente: lambda-controller.zip, lambda-generator.zip ou lambda-processor.zip. Em Runtime settings → Edit, escolha o handler de cada função.</p>
 <p>Para a Controller, envie <code>lambda-controller.zip</code> e configure <code>lambda-controller/control.handler</code> em <strong>Runtime settings → Edit</strong> antes de testar. O prefixo <code>lambda-controller/</code> corresponde à pasta do <code>control.js</code> dentro do ZIP.</p>
 <p>Crie as roles em <strong>IAM → Roles</strong> com confiança para <code>lambda.amazonaws.com</code>. Anexe <code>AWSLambdaBasicExecutionRole</code> a cada role para o CloudWatch Logs e acrescente as ações abaixo nos recursos correspondentes. Escolha a role da função ao criá-la.</p>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th scope="col">Função</th><th scope="col">Handler</th><th scope="col">Memória</th><th scope="col">Timeout</th><th scope="col">Permissões e configuração</th></tr></thead><tbody><tr><td>Control</td><td>lambda-controller/control.handler</td><td>512 MB</td><td>30 s</td><td>DynamoDB GetItem, BatchGetItem, BatchWriteItem, PutItem e Query na tabela. Lambda InvokeFunction no ARN da Generator. SQS GetQueueAttributes nas duas filas.</td></tr><tr><td>Generator</td><td>lambda-generator/generator.handler</td><td>1.024 MB</td><td>660 s</td><td>DynamoDB PutItem na tabela. Em Configuration → Asynchronous invocation, use zero tentativas adicionais.</td></tr><tr><td>Processor</td><td>lambda-processor/processor.handler</td><td>512 MB</td><td>30 s</td><td>DynamoDB GetItem, BatchGetItem, PutItem e UpdateItem na tabela, incluindo as operações usadas na transação. SQS ReceiveMessage, DeleteMessage e GetQueueAttributes na fila principal.</td></tr></tbody></table></div>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th scope="col">Função</th><th scope="col">Handler</th><th scope="col">Memória</th><th scope="col">Timeout</th><th scope="col">Permissões e configuração</th></tr></thead><tbody><tr><td>Control</td><td>lambda-controller/control.handler</td><td>512 MB</td><td>30 s</td><td>DynamoDB GetItem, BatchGetItem, BatchWriteItem, PutItem e Query na tabela. Lambda InvokeFunction no ARN da Generator. SQS GetQueueAttributes nas duas filas.</td></tr><tr><td>Generator</td><td>lambda-generator/generator.handler</td><td>1.024 MB</td><td>660 s</td><td>DynamoDB PutItem na tabela. Em Configuration → Asynchronous invocation, use zero tentativas adicionais.</td></tr><tr><td>Processor</td><td>lambda-processor/processor.handler</td><td>128 MB</td><td>10 s</td><td>DynamoDB GetItem, BatchGetItem, PutItem e UpdateItem na tabela, incluindo as operações usadas na transação. SQS ReceiveMessage, DeleteMessage e GetQueueAttributes na fila principal.</td></tr></tbody></table></div>
 <h3 id="falhas-parciais-sqs">Ative o reporte de falhas parciais do SQS</h3>
 <p>Em <strong>Lambda → Processor → Configuration → Triggers</strong>, adicione ou edite o gatilho da fila principal FIFO. Defina <strong>Batch size = 10</strong>, marque <strong>Report batch item failures</strong> e salve. A opção corresponde a <code>ReportBatchItemFailures</code> na API da AWS.</p>
 <p>A Processor devolve os IDs das mensagens com falha em <code>batchItemFailures</code>. Em FIFO, ela também inclui as mensagens seguintes que ainda não processou, para preservar a ordem. O gatilho remove as mensagens concluídas e as demais voltam a ficar disponíveis após o visibility timeout. Sem essa opção, uma resposta normal da função pode fazer o gatilho remover o lote inteiro, inclusive pedidos que falharam no DynamoDB. <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting">Documentação da AWS</a></p>
+<p>O painel separa falhas de envio das tentativas de processamento com falha. No CloudWatch, abra a <strong>Geradora</strong> para ver os códigos HTTP e erros ao publicar no SQS, a <strong>Processadora</strong> para ver falhas de baixa de estoque e a <strong>Controladora</strong> para investigar início do teste ou leitura do relatório. Se houver throttling de escrita no DynamoDB, confira o Warm Throughput e a concorrência da processadora. O timeout de 60 s vale para novos recebimentos no SQS. Mensagens já invisíveis podem continuar com o prazo que receberam antes da mudança.</p>
 <h3 id="variaveis-lambda">Variáveis das Lambdas</h3>
 <p>Em <strong>Lambda → Configuration → Environment variables</strong>, configure os valores abaixo.</p>
 <div class="table-scroll" tabindex="0"><table class="env-table">
@@ -168,6 +155,11 @@ node_modules/</code></pre>
 <tr><td>Control</td><td><code>DLQ</code></td><td>URL da fila de erros</td><td>A Control consulta quantas mensagens foram para a fila de erros. O redrive é configurado no SQS.</td></tr>
 <tr><td>Control</td><td><code>GENERATOR</code></td><td>Nome da função Generator</td><td>Indica qual Lambda a Control deve invocar para iniciar cada worker.</td></tr>
 </tbody></table></div>
+<h4 id="start-delay">Por que usar um atraso inicial?</h4>
+<p>Quando o estoque está pronto, a Control calcula startAt = agora + 10 s e dispara os workers. Cada worker faz um OPTIONS para preparar a conexão HTTP e espera até startAt para começar o envio. Com o valor inicial, o tempo de preparação é de cerca de 10 s antes da janela de 60 s. Se um worker só estiver pronto depois de startAt, ele usa o tempo que restar na janela.</p>
+<p>Com seis workers começando em paralelo, a Lambda precisa de até seis ambientes de execução para a Generator. Um ambiente já inicializado e livre pode ser reutilizado. Quando a AWS precisa inicializar um ambiente novo, aquela invocação pode sofrer cold start. O atraso inicial dá margem para essa inicialização, mas não garante que todos os workers fiquem prontos a tempo. A Processor escala separadamente quando a fila recebe mensagens. <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html">Ciclo de vida de ambientes Lambda</a></p>
+
+<p>Em Processor → Add trigger → SQS, selecione a fila principal, configure Batch size 10, Maximum concurrency 13 e habilite Report batch item failures.</p>
 </section>
 <section>
 <h2 id="api-gateway">2. Crie o API Gateway e as rotas</h2>
@@ -248,101 +240,32 @@ node_modules/</code></pre>
 </tr>
 </tbody>
 </table></div>
-<h4>1. Models em Method request</h4>
-<p>Associe <code>Order</code> a <code>POST /orders</code> e <code>OrderBatch</code> a <code>POST /orders/batch</code>. Em ambas, selecione <code>application/json</code> e <strong>Validate body</strong>. Os <a href="#modelos" onclick="document.getElementById('modelos').open = true">schemas completos</a> definem o que é válido; os JSONs abaixo são corpos de exemplo para testar as rotas. Substitua o <code>runId</code> pelo valor retornado por <code>POST /runs</code>.</p>
-<p><strong>POST /orders</strong> · um pedido no corpo:</p>
-<pre><code class="language-json">{
+<p>Este é o formato de uma chamada individual. Use o <code>runId</code> retornado por <code>POST /runs</code> e um <code>orderId</code> único dentro do grupo.</p>
+<pre><code class="language-http">POST /live/orders
+Content-Type: application/json
+x-api-key: SUA_CHAVE
+
+{
   &quot;runId&quot;: &quot;11111111-1111-4111-8111-111111111111&quot;,
   &quot;orderId&quot;: &quot;order_0&quot;,
   &quot;shard&quot;: 0
 }</code></pre>
-<p><strong>POST /orders/batch</strong> · um objeto <code>orders</code> com 1 a 10 pedidos. Aqui, os dois são do mesmo shard, como no gerador:</p>
-<pre><code class="language-json">{
-  &quot;orders&quot;: [
-    {
-      &quot;runId&quot;: &quot;11111111-1111-4111-8111-111111111111&quot;,
-      &quot;orderId&quot;: &quot;order_0&quot;,
-      &quot;shard&quot;: 0
-    },
-    {
-      &quot;runId&quot;: &quot;11111111-1111-4111-8111-111111111111&quot;,
-      &quot;orderId&quot;: &quot;order_1024&quot;,
-      &quot;shard&quot;: 0
-    }
-  ]
-}</code></pre>
-<h4>2. Templates em Integration request</h4>
-<p>Cadastre os templates abaixo como <code>application/json</code>. O VTL traduz o corpo para o protocolo do SQS depois da validação. As rotas <code>/runs</code> e <code>/runs/{runId}</code> usam integração proxy com a Lambda de controle e não têm esses templates.</p>
-<h5>POST /orders · SendMessage</h5>
-<p><strong>1. JSON de entrada</strong></p>
-<pre class="gateway-code"><code class="language-json">{
-  &quot;runId&quot;: &quot;11111111-1111-4111-8111-111111111111&quot;,
-  &quot;orderId&quot;: &quot;order_0&quot;,
-  &quot;shard&quot;: 0
-}</code></pre>
-<p>Para <code>POST /orders</code>, cole o <strong>2. VTL de transformação</strong> em uma única linha. A versão em linhas abaixo destaca cada campo.</p>
-<pre class="gateway-code"><code class="language-vtl">Action=SendMessage
-&amp;MessageBody=$util.urlEncode($input.body)
-&amp;MessageGroupId=$util.urlEncode($input.path(&quot;$.runId&quot;))-$util.urlEncode($input.path(&quot;$.shard&quot;))
-&amp;MessageDeduplicationId=$util.urlEncode($input.path(&quot;$.orderId&quot;))</code></pre>
-<details><summary>Copiar o VTL em uma única linha</summary><pre class="gateway-code"><code class="language-vtl">Action=SendMessage&amp;MessageBody=$util.urlEncode($input.body)&amp;MessageGroupId=$util.urlEncode($input.path(&quot;$.runId&quot;))-$util.urlEncode($input.path(&quot;$.shard&quot;))&amp;MessageDeduplicationId=$util.urlEncode($input.path(&quot;$.orderId&quot;))</code></pre></details>
-<p><strong>3. Campos enviados ao SQS</strong></p>
-<pre class="gateway-code"><code class="language-json">{
-  &quot;Action&quot;: &quot;SendMessage&quot;,
-  &quot;MessageBody&quot;: &quot;{\&quot;runId\&quot;:\&quot;11111111-1111-4111-8111-111111111111\&quot;,\&quot;orderId\&quot;:\&quot;order_0\&quot;,\&quot;shard\&quot;:0}&quot;,
-  &quot;MessageGroupId&quot;: &quot;11111111-1111-4111-8111-111111111111-0&quot;,
-  &quot;MessageDeduplicationId&quot;: &quot;order_0&quot;
-}</code></pre>
-<p>O JSON acima mostra os campos da chamada ao SQS. O Gateway envia esses campos como <code>application/x-www-form-urlencoded</code>.</p>
-<h5>POST /orders/batch · SendMessageBatch</h5>
-<p><strong>1. JSON de entrada</strong></p>
-<pre class="gateway-code"><code class="language-json">{
-  &quot;orders&quot;: [
-    {
-      &quot;runId&quot;: &quot;11111111-1111-4111-8111-111111111111&quot;,
-      &quot;orderId&quot;: &quot;order_0&quot;,
-      &quot;shard&quot;: 0
-    }
-  ]
-}</code></pre>
-<p>Para <code>POST /orders/batch</code>, substitua a URL da fila antes de colar o <strong>2. VTL de transformação</strong>.</p>
-<pre class="gateway-code"><code class="language-vtl">{
-  &quot;QueueUrl&quot;: &quot;https://sqs.us-east-1.amazonaws.com/ID_DA_CONTA/NOME_DA_FILA.fifo&quot;,
-  &quot;Entries&quot;: [
-#foreach($order in $input.path(&#x27;$.orders&#x27;))
+<p>Para <code>POST /orders</code>, cole este mapping em uma única linha.</p>
+<pre><code class="language-vtl">Action=SendMessage&amp;MessageBody=$util.urlEncode($input.body)&amp;MessageGroupId=$util.urlEncode($input.path(&quot;$.runId&quot;))-$util.urlEncode($input.path(&quot;$.shard&quot;))&amp;MessageDeduplicationId=$util.urlEncode($input.path(&quot;$.orderId&quot;))
+</code></pre>
+<p>Para <code>POST /orders/batch</code>, substitua a URL da fila antes de colar o mapping.</p>
+<pre><code class="language-vtl">{&quot;QueueUrl&quot;:&quot;https://sqs.us-east-1.amazonaws.com/ID_DA_CONTA/NOME_DA_FILA.fifo&quot;,&quot;Entries&quot;:[
+#foreach($order in $input.path('$.orders'))
   #set($path = &quot;$.orders[$foreach.index]&quot;)
   #set($runId = $order.runId)
   #set($shard = $order.shard)
-    {
-      &quot;Id&quot;: &quot;$foreach.index&quot;,
-      &quot;MessageBody&quot;: &quot;$util.escapeJavaScript($input.json($path)).replaceAll(&quot;\\&#x27;&quot;,&quot;&#x27;&quot;)&quot;,
-      &quot;MessageGroupId&quot;: &quot;${runId}-${shard}&quot;,
-      &quot;MessageDeduplicationId&quot;: &quot;$order.orderId&quot;
-    }#if($foreach.hasNext),#end
+  {&quot;Id&quot;:&quot;$foreach.index&quot;,&quot;MessageBody&quot;:&quot;$util.escapeJavaScript($input.json($path)).replaceAll(&quot;\\'&quot;,&quot;'&quot;)&quot;,&quot;MessageGroupId&quot;:&quot;${runId}-${shard}&quot;,&quot;MessageDeduplicationId&quot;:&quot;$order.orderId&quot;}#if($foreach.hasNext),#end
 #end
-  ]
-}
+]}
 </code></pre>
-<p><strong>3. JSON de saída para o SQS</strong></p>
-<pre class="gateway-code"><code class="language-json">{
-  &quot;QueueUrl&quot;: &quot;https://sqs.us-east-1.amazonaws.com/ID_DA_CONTA/NOME_DA_FILA.fifo&quot;,
-  &quot;Entries&quot;: [
-    {
-      &quot;Id&quot;: &quot;0&quot;,
-      &quot;MessageBody&quot;: &quot;{\&quot;runId\&quot;:\&quot;11111111-1111-4111-8111-111111111111\&quot;,\&quot;orderId\&quot;:\&quot;order_0\&quot;,\&quot;shard\&quot;:0}&quot;,
-      &quot;MessageGroupId&quot;: &quot;11111111-1111-4111-8111-111111111111-0&quot;,
-      &quot;MessageDeduplicationId&quot;: &quot;order_0&quot;
-    }
-  ]
-}</code></pre>
-<p><strong>As expressões que fazem a tradução:</strong> no individual, <code>$input.body</code> lê o JSON inteiro e <code>$util.urlEncode(...)</code> prepara os valores para o formulário. <code>$input.path("$.runId")</code> e <code>$input.path("$.shard")</code> formam o <code>MessageGroupId</code>; <code>orderId</code> vira <code>MessageDeduplicationId</code>. No lote, <code>#foreach($order in $input.path('$.orders'))</code> cria uma entrada por pedido, e <code>$util.escapeJavaScript($input.json($path))</code> prepara o JSON daquele pedido para ir como texto dentro de <code>MessageBody</code>. O <code>replaceAll</code> corrige o escape das aspas simples para manter o JSON válido.</p>
-<h4>3. Templates em Integration response</h4>
-<p>O Gateway recebe o status e o corpo HTTP do SQS, seleciona o template e devolve o status e o corpo da nossa API.</p>
-<ul>
-<li><strong>Individual:</strong> o <code>SendMessage</code> responde com HTTP 200 e XML, que traz campos como <code>MessageId</code> e <code>SequenceNumber</code> no caso da FIFO. O template produz <code>{"accepted": true}</code> e o Gateway devolve HTTP 202. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html">Resposta de SendMessage</a></li>
-<li><strong>Lote:</strong> o <code>SendMessageBatch</code> responde com HTTP 200 e JSON com <code>Successful</code> e <code>Failed</code>. O VTL <code>$input.body</code> repassa o corpo e o Gateway mantém HTTP 200, inclusive se alguns itens falharem. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html">Resposta de SendMessageBatch</a></li>
-</ul>
-<p>Em <strong>Method response</strong>, crie 202 para o envio individual ou 200 para lote, mais 400, 429 e 500. Declare o header <code>Access-Control-Allow-Origin</code> nas respostas. Em <strong>Integration response</strong>, associe o valor estático <code>'*'</code> a esse header em cada resposta, incluindo a resposta padrão. Mapeie o sucesso individual para <code>{&quot;accepted&quot;:true}</code> e o sucesso em lote para <code>$input.body</code>. Use seleção por status <code>4\d{2}</code> e <code>5\d{2}</code> para mapear para 400 e 500. Use os <a href="#respostas" onclick="document.getElementById('respostas').open = true">templates completos de resposta de cada rota</a>. Os templates de erro convertem <code>RequestThrottled</code> em 429 e incluem <code>source=SQS</code>. Preserve as listas <code>Successful</code> e <code>Failed</code> em HTTP 200 para a geradora contar o resultado de cada pedido. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html">Contrato de SendMessageBatch</a></p>
+<p>Em <strong>Models</strong>, crie <code>Order</code> e <code>OrderBatch</code> como modelos separados. Use o tipo de conteúdo <code>application/json</code> e cole os <a href="#modelos">schemas completos abaixo</a>. Em <strong>Method request</strong>, associe o modelo correspondente ao corpo <code>application/json</code> e habilite <strong>Validate body</strong>. <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html">Validação de corpo em REST APIs</a></p>
+<p><strong>Envio individual, POST /orders.</strong> Em <strong>Method response</strong>, crie as respostas 202, 400, 429 e 500 com o header <code>Access-Control-Allow-Origin</code>. Em <strong>Integration response</strong>, configure <code>^200$</code> do SQS → HTTP 202 com <code>{"accepted":true}</code>, <code>^4\d{2}$</code> → HTTP 400 com <code>accepted: false</code> e HTTP 429 quando o corpo indicar <code>RequestThrottled</code> ou <code>ThrottlingException</code>. Configure a resposta padrão com HTTP 500 e <code>accepted: false</code>. Em cada mapping, associe <code>'*'</code> ao header de CORS. Publique o stage <code>live</code> após editar. Veja os <a href="#respostas" onclick="document.getElementById('respostas').open = true">templates de resposta</a>.</p>
+<p><strong>Envio em lote, POST /orders/batch.</strong> Preserve <code>Successful</code> e <code>Failed</code> com <code>$input.body</code> na resposta HTTP 200. Os mappings de erro de lote abaixo são a configuração recomendada para a montagem. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html">Contrato de SendMessageBatch</a></p>
 <details id="modelos"><summary>Schemas JSON de Order e OrderBatch</summary><h4>Order</h4><pre><code class="language-json">{
   &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
   &quot;type&quot;: &quot;object&quot;,
@@ -415,27 +338,26 @@ node_modules/</code></pre>
   }
 }</code></pre></details>
 <details id="respostas"><summary>Mappings de resposta dos pedidos</summary><pre><code>/orders:
-  default:
+  &#x27;^200$&#x27;:
     statusCode: &#x27;202&#x27;
     responseParameters: {method.response.header.Access-Control-Allow-Origin: &quot;&#x27;*&#x27;&quot;}
     responseTemplates: {application/json: &#x27;{&quot;accepted&quot;:true}&#x27;}
-  &#x27;4\d{2}&#x27;:
+  &#x27;^4\d{2}$&#x27;:
     statusCode: &#x27;400&#x27;
     responseParameters: {method.response.header.Access-Control-Allow-Origin: &quot;&#x27;*&#x27;&quot;}
     responseTemplates:
       application/json: |
         #set($code = &quot;SqsRejected&quot;)
-        #if($input.body.contains(&quot;RequestThrottled&quot;))
+        #if($input.body.contains(&quot;RequestThrottled&quot;) || $input.body.contains(&quot;ThrottlingException&quot;))
           #set($context.responseOverride.status = 429)
           #set($code = &quot;RequestThrottled&quot;)
         #end
-        {&quot;source&quot;:&quot;SQS&quot;,&quot;code&quot;:&quot;$code&quot;,&quot;requestId&quot;:&quot;$context.requestId&quot;,&quot;details&quot;:&quot;$util.escapeJavaScript($input.body).replaceAll(&quot;\\&#x27;&quot;,&quot;&#x27;&quot;)&quot;}
-  &#x27;5\d{2}&#x27;:
+        {&quot;accepted&quot;:false,&quot;source&quot;:&quot;SQS&quot;,&quot;code&quot;:&quot;$code&quot;,&quot;requestId&quot;:&quot;$context.requestId&quot;}
+  default:
     statusCode: &#x27;500&#x27;
     responseParameters: {method.response.header.Access-Control-Allow-Origin: &quot;&#x27;*&#x27;&quot;}
     responseTemplates:
-      application/json: |
-        {&quot;source&quot;:&quot;SQS&quot;,&quot;code&quot;:&quot;SqsUnavailable&quot;,&quot;requestId&quot;:&quot;$context.requestId&quot;,&quot;details&quot;:&quot;$util.escapeJavaScript($input.body).replaceAll(&quot;\\&#x27;&quot;,&quot;&#x27;&quot;)&quot;}
+      application/json: &#x27;{&quot;accepted&quot;:false,&quot;source&quot;:&quot;SQS&quot;,&quot;code&quot;:&quot;SqsUnavailable&quot;,&quot;requestId&quot;:&quot;$context.requestId&quot;}&#x27;
 
 /orders/batch:
   default:
@@ -616,6 +538,6 @@ node_modules/</code></pre>
 
   </main>
 </div>
-<footer class="wrap"><a href="/workshop/apresentacao#formas-de-testar">Voltar à apresentação</a></footer>
+<footer class="wrap"><a href="guia-workshop.html">Voltar ao guia do workshop</a></footer>
 </body>
 </html>

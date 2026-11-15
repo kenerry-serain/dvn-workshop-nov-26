@@ -9,6 +9,7 @@ import type {
   ErrorSample,
   GeneratorInvocation,
   Order,
+  SendFailureSource,
   WorkerMetrics,
 } from '../shared/types.js';
 
@@ -22,6 +23,11 @@ type WorkerDiagnostic = {
   operation: string;
   lambdaRequestId?: string;
 };
+
+function sendFailureSource(status: number, body: string): SendFailureSource {
+  if (/"source"\s*:\s*"SQS"|"Failed"\s*:\s*\[|"__type"\s*:|<ErrorResponse\b/i.test(body)) return 'sqs';
+  return status === 429 ? 'apiGatewayThrottle' : 'other';
+}
 
 export async function handler(settings: GeneratorInvocation, context?: Context): Promise<void> {
   const diagnostic: WorkerDiagnostic = {
@@ -87,6 +93,10 @@ async function generateLoad(
   let sent = 0;
   let accepted = 0;
   let errors = 0;
+  const sendFailures: Partial<Record<SendFailureSource, number>> = {};
+  const recordSendFailures = (source: SendFailureSource, count: number) => {
+    sendFailures[source] = (sendFailures[source] || 0) + count;
+  };
   let latencySum = 0;
   let latencyMax = 0;
   const statusCodes: Record<string, number> = {};
@@ -146,6 +156,7 @@ async function generateLoad(
       latencyMaxMs: latencyMax,
       statusCodes,
       errorSamples,
+      sendFailures,
       peakStartedPerSecond,
       checkpointError,
       warmupRequests: 1,
@@ -167,11 +178,14 @@ async function generateLoad(
         signal: AbortSignal.timeout(10_000),
       });
       const body = await response.text();
-      const enqueued = !response.ok
-        ? 0
-        : batch
-          ? countBatchResults(body, orders.length)
-          : orders.length;
+      let enqueued = 0;
+      if (response.ok) {
+        if (!batch) enqueued = orders.length;
+        else {
+          try { enqueued = countBatchResults(body, orders.length); } catch { /* Unrecognized response. */ }
+        }
+      }
+      if (enqueued < orders.length) recordSendFailures(sendFailureSource(response.status, body), orders.length - enqueued);
       if (
         enqueued < orders.length &&
         errorSamples.length < 3 &&
@@ -202,6 +216,7 @@ async function generateLoad(
     } catch (error) {
       networkError ??= errorDetails(error);
       errors += orders.length;
+      recordSendFailures('network', orders.length);
       statusCodes.network = (statusCodes.network || 0) + 1;
     } finally {
       const milliseconds = performance.now() - requestStartedAt;

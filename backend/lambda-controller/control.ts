@@ -12,7 +12,9 @@ import {
   saveHistory,
   summarizeRun,
 } from './history.js';
+import { readProcessingFailures } from './processingFailures.js';
 import type {
+  SendFailureSource,
   GeneratorInvocation,
   InventoryShard,
   RunConfig,
@@ -182,6 +184,7 @@ async function readLoadTest(event: APIGatewayProxyEvent): Promise<APIGatewayProx
         AttributeNames: [
           'ApproximateNumberOfMessages',
           'ApproximateNumberOfMessagesNotVisible',
+          'VisibilityTimeout',
         ],
       }),
     ),
@@ -195,7 +198,18 @@ async function readLoadTest(event: APIGatewayProxyEvent): Promise<APIGatewayProx
   const { totals, workers, statusCodes, errorSamples, lastProcessedAt, elapsedMs, complete } =
     state;
   const summary = summarizeRun(metadata, state, observedAt);
-  await saveHistory(summary);
+  const visibilitySeconds = Number(queue.Attributes?.VisibilityTimeout || 0);
+  const sendFailures: Partial<Record<SendFailureSource, number>> = {};
+  for (const worker of workers) {
+    for (const source of ['sqs', 'apiGatewayThrottle', 'network', 'other'] as const) {
+      const count = worker.sendFailures?.[source] || 0;
+      if (count) sendFailures[source] = (sendFailures[source] || 0) + count;
+    }
+  }
+  const [processingFailures] = await Promise.all([
+    readProcessingFailures(runId, Date.parse(metadata.createdAt) || Date.now(), visibilitySeconds),
+    saveHistory(summary),
+  ]);
   console.info(
     JSON.stringify({
       event: 'RunReportRead',
@@ -219,6 +233,15 @@ async function readLoadTest(event: APIGatewayProxyEvent): Promise<APIGatewayProx
     ...totals,
     statusCodes,
     errorSamples,
+    sendFailures,
+    processingFailures,
+    visibilitySeconds,
+    logGroups: {
+      processor: process.env.PROCESSOR_LOG_GROUP,
+      generator: process.env.GENERATOR ? `/aws/lambda/${process.env.GENERATOR.split(':').at(-1)}` : undefined,
+      controller: process.env.AWS_LAMBDA_FUNCTION_NAME ? `/aws/lambda/${process.env.AWS_LAMBDA_FUNCTION_NAME}` : undefined,
+      region: process.env.AWS_REGION,
+    },
     lastProcessedAt,
     elapsedMs,
     ...(metadata.sendMode === 'batch'
