@@ -1,0 +1,1 @@
+Action=SendMessage&MessageBody=$util.urlEncode($input.body)&MessageGroupId=$util.urlEncode($input.path("$.runId"))-$util.urlEncode($input.path("$.shard"))&MessageDeduplicationId=$util.urlEncode($input.path("$.orderId"))

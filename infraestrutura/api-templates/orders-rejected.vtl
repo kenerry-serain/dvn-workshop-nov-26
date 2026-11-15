@@ -1,0 +1,6 @@
+#set($code = "SqsRejected")
+#if($input.body.contains("RequestThrottled") || $input.body.contains("ThrottlingException"))
+  #set($context.responseOverride.status = 429)
+  #set($code = "RequestThrottled")
+#end
+{"accepted":false,"source":"SQS","code":"$code","requestId":"$context.requestId"}

@@ -1,0 +1,16 @@
+{
+  "QueueUrl": "${queue_url}",
+  "Entries": [
+#foreach($order in $input.path('$.orders'))
+  #set($path = "$.orders[$foreach.index]")
+  #set($runId = $order.runId)
+  #set($shard = $order.shard)
+    {
+      "Id": "$foreach.index",
+      "MessageBody": "$util.escapeJavaScript($input.json($path)).replaceAll("\\'","'")",
+      "MessageGroupId": "$${runId}-$${shard}",
+      "MessageDeduplicationId": "$order.orderId"
+    }#if($foreach.hasNext),#end
+#end
+  ]
+}

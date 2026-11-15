@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "runId",
+    "orderId",
+    "shard"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "runId": {
+      "type": "string",
+      "pattern": "^[a-f0-9-]{36}$"
+    },
+    "orderId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]{1,100}$"
+    },
+    "shard": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1023
+    },
+    "sentAt": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}
